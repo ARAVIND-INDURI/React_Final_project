@@ -6,7 +6,7 @@ const Footer = () => {
     <Box backgroundColor="#18181b">
       <footer>
         <Flex
-          id="footer"
+          className="scroll-section"
           margin="0 auto"
           px={12}
           color="white"

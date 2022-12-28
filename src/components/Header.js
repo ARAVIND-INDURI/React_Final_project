@@ -57,6 +57,7 @@ const Header = () => {
       backgroundColor="#18181b"
     >
       <Box color="white" maxWidth="1280px" margin="0 auto">
+        {/* apply the transformation to hide the header on scroll */}
         <HStack
           px={16}
           py={4}
@@ -65,10 +66,26 @@ const Header = () => {
         >
           <nav>
             {/* Add social media links based on the `socials` data */}
+            <HStack spacing={4}>
+              {socials.map((social) => (
+                <a key={social.url} href={social.url } target="_blank" rel="noreferrer">
+                  <FontAwesomeIcon icon={social.icon} size="2x" />
+                </a>
+              ))}
+            </HStack>
+            {/* Add links to Home, About me, and Skills section */}
           </nav>
           <nav>
             <HStack spacing={8}>
               {/* Add links to Projects and Contact me section */}
+              <a href="#projects" onClick={handleClick("projects")}>
+                Projects
+              </a>
+              <a href="#contactme" onClick={handleClick("contactme")}>
+                Contact Me
+              </a>
+
+
             </HStack>
           </nav>
         </HStack>

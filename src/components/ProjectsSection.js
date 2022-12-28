@@ -1,6 +1,6 @@
 import React from "react";
 import FullScreenSection from "./FullScreenSection";
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Heading, HStack, VStack } from "@chakra-ui/react";
 import Card from "./Card";
 
 const projects = [
@@ -33,11 +33,10 @@ const projects = [
 const ProjectsSection = () => {
   return (
     <FullScreenSection
-      className="scroll-section"
+      alignItems="center"
       backgroundColor="#14532d"
       isDarkBackground
       p={8}
-      alignItems="flex-start"
       spacing={8}
     >
       <Heading as="h1" id="projects-section">

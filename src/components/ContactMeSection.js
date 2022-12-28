@@ -22,14 +22,36 @@ const LandingSection = () => {
   const { onOpen } = useAlertContext();
 
   const formik = useFormik({
-    initialValues: {},
-    onSubmit: (values) => {},
-    validationSchema: Yup.object({}),
+    initialValues: {
+      firstName: "",
+      email: "",
+      type: "hireMe",
+      message: "",
+    },
+    onSubmit: (values) => {
+      submit(values);
+    },
+    validationSchema: Yup.object({
+      firstName: Yup.string()
+        .max(15, 'Must be 15 characters or less')
+        .required('Required'),
+      email: Yup.string()
+        .email('Invalid email address')
+        .required('Required'),
+      type: Yup.string()
+        .oneOf(
+          ['hireMe', 'openSource', 'other'],
+          'Invalid Type'
+        )
+        .required('Required'),
+      message: Yup.string()
+        .max(200, 'Must be 200 characters or less')
+        .required('Required'),
+    }),    
   });
 
   return (
     <FullScreenSection
-      className="scroll-section"
       isDarkBackground
       backgroundColor="#512DA8"
       py={16}
@@ -42,7 +64,7 @@ const LandingSection = () => {
         <Box p={6} rounded="md" w="100%">
           <form>
             <VStack spacing={4}>
-              <FormControl isInvalid={false}>
+              <FormControl isInvalid={formik.errors.firstName && formik.touched.firstName}>
                 <FormLabel htmlFor="firstName">Name</FormLabel>
                 <Input
                   id="firstName"
@@ -50,7 +72,7 @@ const LandingSection = () => {
                 />
                 <FormErrorMessage></FormErrorMessage>
               </FormControl>
-              <FormControl isInvalid={false}>
+              <FormControl isInvalid={formik.errors.email && formik.touched.email}>
                 <FormLabel htmlFor="email">Email Address</FormLabel>
                 <Input
                   id="email"
@@ -69,7 +91,7 @@ const LandingSection = () => {
                   <option value="other">Other</option>
                 </Select>
               </FormControl>
-              <FormControl isInvalid={false}>
+              <FormControl isInvalid={formik.errors.message && formik.touched.message}>
                 <FormLabel htmlFor="comment">Your message</FormLabel>
                 <Textarea
                   id="comment"
@@ -78,7 +100,7 @@ const LandingSection = () => {
                 />
                 <FormErrorMessage></FormErrorMessage>
               </FormControl>
-              <Button type="submit" colorScheme="purple" width="full">
+              <Button type="submit" colorScheme="purple" width="full" isLoading={isLoading} loadingText="Submitting" onClick={formik.handleSubmit} onSubmit={(e) => e.preventDefault()}>
                 Submit
               </Button>
             </VStack>
