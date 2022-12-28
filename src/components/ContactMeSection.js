@@ -33,19 +33,13 @@ const LandingSection = () => {
     },
     validationSchema: Yup.object({
       firstName: Yup.string()
-        .max(15, 'Must be 15 characters or less')
+        .max(30, 'Must be 30 characters or less')
         .required('Required'),
       email: Yup.string()
         .email('Invalid email address')
         .required('Required'),
-      type: Yup.string()
-        .oneOf(
-          ['hireMe', 'openSource', 'other'],
-          'Invalid Type'
-        )
-        .required('Required'),
       message: Yup.string()
-        .max(200, 'Must be 200 characters or less')
+        .max(300, 'Must be 300 characters or less')
         .required('Required'),
     }),    
   });
@@ -62,15 +56,18 @@ const LandingSection = () => {
           Contact me
         </Heading>
         <Box p={6} rounded="md" w="100%">
-          <form>
+          <form onSubmit={formik.handleSubmit}>
             <VStack spacing={4}>
               <FormControl isInvalid={formik.errors.firstName && formik.touched.firstName}>
                 <FormLabel htmlFor="firstName">Name</FormLabel>
                 <Input
                   id="firstName"
                   name="firstName"
+                  {...formik.getFieldProps('firstName')}
                 />
-                <FormErrorMessage></FormErrorMessage>
+                <FormErrorMessage>
+                  {formik.errors.firstName}
+                </FormErrorMessage>
               </FormControl>
               <FormControl isInvalid={formik.errors.email && formik.touched.email}>
                 <FormLabel htmlFor="email">Email Address</FormLabel>
@@ -78,8 +75,11 @@ const LandingSection = () => {
                   id="email"
                   name="email"
                   type="email"
+                  {...formik.getFieldProps('email')}
                 />
-                <FormErrorMessage></FormErrorMessage>
+                <FormErrorMessage>
+                  {formik.errors.email}
+                </FormErrorMessage>
               </FormControl>
               <FormControl>
                 <FormLabel htmlFor="type">Type of enquiry</FormLabel>
@@ -97,10 +97,13 @@ const LandingSection = () => {
                   id="comment"
                   name="comment"
                   height={250}
+                  {...formik.getFieldProps('message')}
                 />
-                <FormErrorMessage></FormErrorMessage>
+                <FormErrorMessage>
+                  {formik.errors.message}
+                </FormErrorMessage>
               </FormControl>
-              <Button type="submit" colorScheme="purple" width="full" isLoading={isLoading} loadingText="Submitting" onClick={formik.handleSubmit} onSubmit={(e) => e.preventDefault()}>
+              <Button type="submit" colorScheme="purple" width="full" isLoading={isLoading}>
                 Submit
               </Button>
             </VStack>

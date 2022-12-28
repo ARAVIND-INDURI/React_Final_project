@@ -21,13 +21,13 @@ const LandingSection = () => (
         name="Pete"
         src="https://avatars.githubusercontent.com/u/10064416?v=4"
       />
-      <Heading as="h1" size="2xl">
+      <Heading as="h1" size="sm">
         {greeting}
       </Heading>
-      <Heading as="h2" size="lg">
+      <Heading as="h2" size="2xl">
         {bio1}
       </Heading>
-      <Heading as="h2" size="lg">
+      <Heading as="h2" size="2xl">
         {bio2}
       </Heading>
     </VStack>

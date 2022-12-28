@@ -44,6 +44,26 @@ const Header = () => {
     }
   };
 
+  const headerRef = useRef(null);
+  const prevScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > prevScrollY.current) {
+        headerRef.current.style.transform = "translateY(-200px)";
+      } else {
+        headerRef.current.style.transform = "translateY(0)";
+      }
+      prevScrollY.current = currentScrollY;
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <Box
       position="fixed"
@@ -55,9 +75,9 @@ const Header = () => {
       transitionDuration=".3s"
       transitionTimingFunction="ease-in-out"
       backgroundColor="#18181b"
+      ref={headerRef}
     >
       <Box color="white" maxWidth="1280px" margin="0 auto">
-        {/* apply the transformation to hide the header on scroll */}
         <HStack
           px={16}
           py={4}
@@ -65,7 +85,6 @@ const Header = () => {
           alignItems="center"
         >
           <nav>
-            {/* Add social media links based on the `socials` data */}
             <HStack spacing={4}>
               {socials.map((social) => (
                 <a key={social.url} href={social.url } target="_blank" rel="noreferrer">
@@ -73,11 +92,9 @@ const Header = () => {
                 </a>
               ))}
             </HStack>
-            {/* Add links to Home, About me, and Skills section */}
           </nav>
           <nav>
             <HStack spacing={8}>
-              {/* Add links to Projects and Contact me section */}
               <a href="#projects" onClick={handleClick("projects")}>
                 Projects
               </a>
