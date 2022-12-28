@@ -29,7 +29,7 @@ const LandingSection = () => {
       message: "",
     },
     onSubmit: (values) => {
-      submit(values);
+      submit("localhost:3000", values);
     },
     validationSchema: Yup.object({
       firstName: Yup.string()
@@ -43,6 +43,12 @@ const LandingSection = () => {
         .required('Required'),
     }),    
   });
+
+  useEffect(() => {
+    if (response) {
+      onOpen(response.type, response.message);
+    }
+  }, [response]);  
 
   return (
     <FullScreenSection
