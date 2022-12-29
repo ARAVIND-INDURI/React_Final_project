@@ -39,7 +39,7 @@ const LandingSection = () => {
         .email('Invalid email address')
         .required('Required'),
       message: Yup.string()
-        .max(300, 'Must be 300 characters or less')
+        .min(25, 'Must be 25 characters or more')
         .required('Required'),
     }),    
   });
