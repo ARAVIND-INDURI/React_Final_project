@@ -14,3 +14,10 @@ As per the course's instructions:
 - A contact me section with a form to allow visitors to contact you
 
 Here you will have the opportunity to use some popular open source libraries that will help you to have a more polished and professional looking page."
+
+## How to run
+
+1. Clone the repository
+2. Run `npm install` to install the dependencies
+3. Run `npm start` to start the development server
+4. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
