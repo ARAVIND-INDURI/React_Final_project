@@ -2,8 +2,6 @@
 
 This is the project for the final assignment of the [Meta Front-End Developer Professional Certificate](https://www.coursera.org/professional-certificates/meta-front-end-developer)'s [Advanced React course](https://www.coursera.org/learn/advanced-react?specialization=meta-front-end-developer).
 
-The final result of the assessment can be seen [here](https://amcerri.github.io/meta-advanced-react-final-assignment)
-
 ## Task
 
 As per the course's instructions:
