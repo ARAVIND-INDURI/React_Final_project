@@ -16,7 +16,7 @@ const socials = [
   },
   {
     icon: faGithub,
-    url: "https://github.com",
+    url: "https://github.com/ARAVIND-INDURI",
   },
   {
     icon: faLinkedin,
